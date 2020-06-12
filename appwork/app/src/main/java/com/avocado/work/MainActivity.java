@@ -2,11 +2,15 @@ package com.avocado.work;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.alibaba.fastjson.JSON;
+import com.avocado.entity.Customer;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -22,10 +26,13 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
+    Customer customer =null;
     private EditText username,password;
     private Button loginBtn;
     private static final String TAG = "springboot";
     private String urlStr = "http://10.0.2.2:8080/customer";
+    private static  final int Index=0;
+    //private static  final int Moon=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 login();
+
             }
         });
     }
@@ -65,9 +73,10 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     private void login(){
+
         String url = urlStr+"/login";
         OkHttpClient okHttpClient = new OkHttpClient();
-        RequestBody requestBody = new FormBody.Builder()
+        RequestBody requestBody = new FormBody.Builder()//post请求
                 .add("username",username.getText().toString())
                 .add("password",password.getText().toString())
                 .build();
@@ -84,13 +93,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.d(TAG, response.protocol() + " " +response.code() + " " + response.message());
-                Headers headers = response.headers();
-                for (int i = 0; i < headers.size(); i++) {
-                    Log.d(TAG, headers.name(i) + ":" + headers.value(i));
-                }
-                Log.d(TAG, "onResponse: " + response.body().string());
-                Log.d(TAG, "get: " + response.body().contentType());
+//                Log.d(TAG, response.protocol() + " " +response.code() + " " + response.message());
+//                Headers headers = response.headers();
+//                for (int i = 0; i < headers.size(); i++) {
+//                    Log.d(TAG, headers.name(i) + ":" + headers.value(i));
+//                }
+//                Log.d(TAG, "onResponse: " + response.body().string());
+                customer= JSON.parseObject(response.body().string(),Customer.class);//解析json数据
+                System.out.println(customer.toString());
+                Intent intent=new Intent(MainActivity.this,IndexActivity.class);
+                intent.putExtra("username",customer.getcUsername());
+                startActivityForResult(intent,Index);
+
             }
         });
     }
