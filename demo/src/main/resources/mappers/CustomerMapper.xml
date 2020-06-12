@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.avocado.dao.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.avocado.entity.Customer">
+    <constructor>
+      <idArg column="c_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="c_username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="c_password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="c_phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="c_table" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="c_regtime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="c_frequency" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    c_id, c_username, c_password, c_phone, c_table, c_regtime, c_frequency
+  </sql>
+  <select id="selectByExample" parameterType="com.avocado.entity.CustomerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_customer
+    where c_id = #{cId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_customer
+    where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.avocado.entity.CustomerExample">
+    delete from tb_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.avocado.entity.Customer">
+    insert into tb_customer (c_id, c_username, c_password, 
+      c_phone, c_table, c_regtime, 
+      c_frequency)
+    values (#{cId,jdbcType=INTEGER}, #{cUsername,jdbcType=VARCHAR}, #{cPassword,jdbcType=VARCHAR}, 
+      #{cPhone,jdbcType=VARCHAR}, #{cTable,jdbcType=VARCHAR}, #{cRegtime,jdbcType=TIMESTAMP}, 
+      #{cFrequency,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.avocado.entity.Customer">
+    insert into tb_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="cUsername != null">
+        c_username,
+      </if>
+      <if test="cPassword != null">
+        c_password,
+      </if>
+      <if test="cPhone != null">
+        c_phone,
+      </if>
+      <if test="cTable != null">
+        c_table,
+      </if>
+      <if test="cRegtime != null">
+        c_regtime,
+      </if>
+      <if test="cFrequency != null">
+        c_frequency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cUsername != null">
+        #{cUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="cPassword != null">
+        #{cPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="cPhone != null">
+        #{cPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cTable != null">
+        #{cTable,jdbcType=VARCHAR},
+      </if>
+      <if test="cRegtime != null">
+        #{cRegtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cFrequency != null">
+        #{cFrequency,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.avocado.entity.CustomerExample" resultType="java.lang.Long">
+    select count(*) from tb_customer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_customer
+    <set>
+      <if test="record.cId != null">
+        c_id = #{record.cId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cUsername != null">
+        c_username = #{record.cUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cPassword != null">
+        c_password = #{record.cPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cPhone != null">
+        c_phone = #{record.cPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cTable != null">
+        c_table = #{record.cTable,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cRegtime != null">
+        c_regtime = #{record.cRegtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cFrequency != null">
+        c_frequency = #{record.cFrequency,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_customer
+    set c_id = #{record.cId,jdbcType=INTEGER},
+      c_username = #{record.cUsername,jdbcType=VARCHAR},
+      c_password = #{record.cPassword,jdbcType=VARCHAR},
+      c_phone = #{record.cPhone,jdbcType=VARCHAR},
+      c_table = #{record.cTable,jdbcType=VARCHAR},
+      c_regtime = #{record.cRegtime,jdbcType=TIMESTAMP},
+      c_frequency = #{record.cFrequency,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.avocado.entity.Customer">
+    update tb_customer
+    <set>
+      <if test="cUsername != null">
+        c_username = #{cUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="cPassword != null">
+        c_password = #{cPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="cPhone != null">
+        c_phone = #{cPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cTable != null">
+        c_table = #{cTable,jdbcType=VARCHAR},
+      </if>
+      <if test="cRegtime != null">
+        c_regtime = #{cRegtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cFrequency != null">
+        c_frequency = #{cFrequency,jdbcType=INTEGER},
+      </if>
+    </set>
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.avocado.entity.Customer">
+    update tb_customer
+    set c_username = #{cUsername,jdbcType=VARCHAR},
+      c_password = #{cPassword,jdbcType=VARCHAR},
+      c_phone = #{cPhone,jdbcType=VARCHAR},
+      c_table = #{cTable,jdbcType=VARCHAR},
+      c_regtime = #{cRegtime,jdbcType=TIMESTAMP},
+      c_frequency = #{cFrequency,jdbcType=INTEGER}
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+
+<!--  <resultMap id="CustomerListMap" type="com.avocado.entity.Customer">-->
+<!--    <constructor>-->
+<!--      <idArg column="c_id" javaType="java.lang.Integer" jdbcType="INTEGER" />-->
+<!--      <arg column="c_username" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+<!--      <arg column="c_password" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+<!--      <arg column="c_phone" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+<!--      <arg column="c_table" javaType="java.lang.Integer" jdbcType="Integer" />-->
+<!--      <arg column="c_regtime" javaType="java.util.Date" jdbcType="TIMESTAMP" />-->
+<!--      <arg column="c_frequency" javaType="java.lang.Integer" jdbcType="INTEGER" />-->
+<!--    </constructor>-->
+<!--  </resultMap>-->
+
+  <select id="login" resultMap="BaseResultMap">
+    select * from tb_customer where c_username=#{param1} and c_password=#{param2}
+  </select>
+
+
+</mapper>
