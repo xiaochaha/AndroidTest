@@ -1,5 +1,7 @@
 package com.avocado.entity;
 
+
+
 import java.util.Date;
 
 public class Customer {
@@ -85,5 +87,18 @@ public class Customer {
 
     public void setcFrequency(Integer cFrequency) {
         this.cFrequency = cFrequency;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "cId=" + cId +
+                ", cUsername='" + cUsername + '\'' +
+                ", cPassword='" + cPassword + '\'' +
+                ", cPhone='" + cPhone + '\'' +
+                ", cTable='" + cTable + '\'' +
+                ", cRegtime=" + cRegtime +
+                ", cFrequency=" + cFrequency +
+                '}';
     }
 }

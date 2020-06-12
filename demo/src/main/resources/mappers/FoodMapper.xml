@@ -257,4 +257,11 @@
       f_recommend = #{fRecommend,jdbcType=CHAR}
     where f_id = #{fId,jdbcType=INTEGER}
   </update>
+
+
+  <!-- 显示所有菜品-->
+  <select id="allFoodList" resultMap="BaseResultMap" >
+    select * from tb_food
+  </select>
+
 </mapper>

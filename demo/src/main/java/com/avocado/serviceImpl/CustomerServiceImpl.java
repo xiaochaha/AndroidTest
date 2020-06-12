@@ -20,12 +20,16 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer login(String username, String password) {
-        Customer customer=customerMapper.login(username,password);
-        return customer;
+        return customerMapper.login(username,password);
     }
 
     @Override
-    public void register(Customer customer) {
-
+    public int register(Customer customer) {
+        try {
+            return customerMapper.insert(customer);
+        }catch (Exception e){
+            System.out.println(e.toString());
+            return 0;
+        }
     }
 }
