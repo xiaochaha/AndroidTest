@@ -67,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
     private void login(){
         String url = urlStr+"/login";
         OkHttpClient okHttpClient = new OkHttpClient();
-        Map<String,String> map = new HashMap<>();
         RequestBody requestBody = new FormBody.Builder()
-                .add(username.getText().toString(), password.getText().toString())
+                .add("username",username.getText().toString())
+                .add("password",password.getText().toString())
                 .build();
         Request request = new Request.Builder()
                 .url(url)
@@ -84,13 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                System.out.println(username.getText().toString()+"123"+ password.getText().toString());
                 Log.d(TAG, response.protocol() + " " +response.code() + " " + response.message());
                 Headers headers = response.headers();
                 for (int i = 0; i < headers.size(); i++) {
                     Log.d(TAG, headers.name(i) + ":" + headers.value(i));
                 }
                 Log.d(TAG, "onResponse: " + response.body().string());
+                Log.d(TAG, "get: " + response.body().contentType());
             }
         });
     }
