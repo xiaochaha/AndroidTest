@@ -1,252 +1,271 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.avocado.dao.FoodMapper">
-  <resultMap id="BaseResultMap" type="com.avocado.entity.Food">
-    <constructor>
-      <idArg column="f_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="f_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="f_price" javaType="java.lang.Double" jdbcType="DOUBLE" />
-      <arg column="f_discount" javaType="java.lang.Double" jdbcType="DOUBLE" />
-      <arg column="f_picture" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="f_describe" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="f_quantity" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="f_recommend" javaType="java.lang.String" jdbcType="CHAR" />
-    </constructor>
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.avocado.entity.Food">
+        <constructor>
+            <idArg column="f_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="f_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="f_price" javaType="java.lang.Double" jdbcType="DOUBLE"/>
+            <arg column="f_discount" javaType="java.lang.Double" jdbcType="DOUBLE"/>
+            <arg column="f_picture" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="f_describe" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="f_quantity" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="f_recommend" javaType="java.lang.String" jdbcType="CHAR"/>
+            <arg column="category_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        </constructor>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    f_id, f_name, f_price, f_discount, f_picture, f_describe, f_quantity, f_recommend, 
+    category_id
+  </sql>
+    <select id="selectByExample" parameterType="com.avocado.entity.FoodExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    f_id, f_name, f_price, f_discount, f_picture, f_describe, f_quantity, f_recommend
-  </sql>
-  <select id="selectByExample" parameterType="com.avocado.entity.FoodExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tb_food
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tb_food
-    where f_id = #{fId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <include refid="Base_Column_List"/>
+        from tb_food
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_food
+        where f_id = #{fId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_food
     where f_id = #{fId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.avocado.entity.FoodExample">
-    delete from tb_food
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.avocado.entity.Food">
+    <delete id="deleteByExample" parameterType="com.avocado.entity.FoodExample">
+        delete from tb_food
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.avocado.entity.Food">
     insert into tb_food (f_id, f_name, f_price, 
       f_discount, f_picture, f_describe, 
-      f_quantity, f_recommend)
+      f_quantity, f_recommend, category_id
+      )
     values (#{fId,jdbcType=INTEGER}, #{fName,jdbcType=VARCHAR}, #{fPrice,jdbcType=DOUBLE}, 
       #{fDiscount,jdbcType=DOUBLE}, #{fPicture,jdbcType=VARCHAR}, #{fDescribe,jdbcType=VARCHAR}, 
-      #{fQuantity,jdbcType=INTEGER}, #{fRecommend,jdbcType=CHAR})
+      #{fQuantity,jdbcType=INTEGER}, #{fRecommend,jdbcType=CHAR}, #{categoryId,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.avocado.entity.Food">
-    insert into tb_food
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="fId != null">
-        f_id,
-      </if>
-      <if test="fName != null">
-        f_name,
-      </if>
-      <if test="fPrice != null">
-        f_price,
-      </if>
-      <if test="fDiscount != null">
-        f_discount,
-      </if>
-      <if test="fPicture != null">
-        f_picture,
-      </if>
-      <if test="fDescribe != null">
-        f_describe,
-      </if>
-      <if test="fQuantity != null">
-        f_quantity,
-      </if>
-      <if test="fRecommend != null">
-        f_recommend,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="fId != null">
-        #{fId,jdbcType=INTEGER},
-      </if>
-      <if test="fName != null">
-        #{fName,jdbcType=VARCHAR},
-      </if>
-      <if test="fPrice != null">
-        #{fPrice,jdbcType=DOUBLE},
-      </if>
-      <if test="fDiscount != null">
-        #{fDiscount,jdbcType=DOUBLE},
-      </if>
-      <if test="fPicture != null">
-        #{fPicture,jdbcType=VARCHAR},
-      </if>
-      <if test="fDescribe != null">
-        #{fDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="fQuantity != null">
-        #{fQuantity,jdbcType=INTEGER},
-      </if>
-      <if test="fRecommend != null">
-        #{fRecommend,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.avocado.entity.FoodExample" resultType="java.lang.Long">
-    select count(*) from tb_food
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tb_food
-    <set>
-      <if test="record.fId != null">
-        f_id = #{record.fId,jdbcType=INTEGER},
-      </if>
-      <if test="record.fName != null">
+    <insert id="insertSelective" parameterType="com.avocado.entity.Food">
+        insert into tb_food
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fId != null">
+                f_id,
+            </if>
+            <if test="fName != null">
+                f_name,
+            </if>
+            <if test="fPrice != null">
+                f_price,
+            </if>
+            <if test="fDiscount != null">
+                f_discount,
+            </if>
+            <if test="fPicture != null">
+                f_picture,
+            </if>
+            <if test="fDescribe != null">
+                f_describe,
+            </if>
+            <if test="fQuantity != null">
+                f_quantity,
+            </if>
+            <if test="fRecommend != null">
+                f_recommend,
+            </if>
+            <if test="categoryId != null">
+                category_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fId != null">
+                #{fId,jdbcType=INTEGER},
+            </if>
+            <if test="fName != null">
+                #{fName,jdbcType=VARCHAR},
+            </if>
+            <if test="fPrice != null">
+                #{fPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="fDiscount != null">
+                #{fDiscount,jdbcType=DOUBLE},
+            </if>
+            <if test="fPicture != null">
+                #{fPicture,jdbcType=VARCHAR},
+            </if>
+            <if test="fDescribe != null">
+                #{fDescribe,jdbcType=VARCHAR},
+            </if>
+            <if test="fQuantity != null">
+                #{fQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="fRecommend != null">
+                #{fRecommend,jdbcType=CHAR},
+            </if>
+            <if test="categoryId != null">
+                #{categoryId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.avocado.entity.FoodExample" resultType="java.lang.Long">
+        select count(*) from tb_food
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update tb_food
+        <set>
+            <if test="record.fId != null">
+                f_id = #{record.fId,jdbcType=INTEGER},
+            </if>
+            <if test="record.fName != null">
+                f_name = #{record.fName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.fPrice != null">
+                f_price = #{record.fPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="record.fDiscount != null">
+                f_discount = #{record.fDiscount,jdbcType=DOUBLE},
+            </if>
+            <if test="record.fPicture != null">
+                f_picture = #{record.fPicture,jdbcType=VARCHAR},
+            </if>
+            <if test="record.fDescribe != null">
+                f_describe = #{record.fDescribe,jdbcType=VARCHAR},
+            </if>
+            <if test="record.fQuantity != null">
+                f_quantity = #{record.fQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="record.fRecommend != null">
+                f_recommend = #{record.fRecommend,jdbcType=CHAR},
+            </if>
+            <if test="record.categoryId != null">
+                category_id = #{record.categoryId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update tb_food
+        set f_id = #{record.fId,jdbcType=INTEGER},
         f_name = #{record.fName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.fPrice != null">
         f_price = #{record.fPrice,jdbcType=DOUBLE},
-      </if>
-      <if test="record.fDiscount != null">
         f_discount = #{record.fDiscount,jdbcType=DOUBLE},
-      </if>
-      <if test="record.fPicture != null">
         f_picture = #{record.fPicture,jdbcType=VARCHAR},
-      </if>
-      <if test="record.fDescribe != null">
         f_describe = #{record.fDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="record.fQuantity != null">
         f_quantity = #{record.fQuantity,jdbcType=INTEGER},
-      </if>
-      <if test="record.fRecommend != null">
         f_recommend = #{record.fRecommend,jdbcType=CHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tb_food
-    set f_id = #{record.fId,jdbcType=INTEGER},
-      f_name = #{record.fName,jdbcType=VARCHAR},
-      f_price = #{record.fPrice,jdbcType=DOUBLE},
-      f_discount = #{record.fDiscount,jdbcType=DOUBLE},
-      f_picture = #{record.fPicture,jdbcType=VARCHAR},
-      f_describe = #{record.fDescribe,jdbcType=VARCHAR},
-      f_quantity = #{record.fQuantity,jdbcType=INTEGER},
-      f_recommend = #{record.fRecommend,jdbcType=CHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.avocado.entity.Food">
-    update tb_food
-    <set>
-      <if test="fName != null">
-        f_name = #{fName,jdbcType=VARCHAR},
-      </if>
-      <if test="fPrice != null">
-        f_price = #{fPrice,jdbcType=DOUBLE},
-      </if>
-      <if test="fDiscount != null">
-        f_discount = #{fDiscount,jdbcType=DOUBLE},
-      </if>
-      <if test="fPicture != null">
-        f_picture = #{fPicture,jdbcType=VARCHAR},
-      </if>
-      <if test="fDescribe != null">
-        f_describe = #{fDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="fQuantity != null">
-        f_quantity = #{fQuantity,jdbcType=INTEGER},
-      </if>
-      <if test="fRecommend != null">
-        f_recommend = #{fRecommend,jdbcType=CHAR},
-      </if>
-    </set>
-    where f_id = #{fId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.avocado.entity.Food">
+        category_id = #{record.categoryId,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.avocado.entity.Food">
+        update tb_food
+        <set>
+            <if test="fName != null">
+                f_name = #{fName,jdbcType=VARCHAR},
+            </if>
+            <if test="fPrice != null">
+                f_price = #{fPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="fDiscount != null">
+                f_discount = #{fDiscount,jdbcType=DOUBLE},
+            </if>
+            <if test="fPicture != null">
+                f_picture = #{fPicture,jdbcType=VARCHAR},
+            </if>
+            <if test="fDescribe != null">
+                f_describe = #{fDescribe,jdbcType=VARCHAR},
+            </if>
+            <if test="fQuantity != null">
+                f_quantity = #{fQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="fRecommend != null">
+                f_recommend = #{fRecommend,jdbcType=CHAR},
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where f_id = #{fId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.avocado.entity.Food">
     update tb_food
     set f_name = #{fName,jdbcType=VARCHAR},
       f_price = #{fPrice,jdbcType=DOUBLE},
@@ -254,14 +273,38 @@
       f_picture = #{fPicture,jdbcType=VARCHAR},
       f_describe = #{fDescribe,jdbcType=VARCHAR},
       f_quantity = #{fQuantity,jdbcType=INTEGER},
-      f_recommend = #{fRecommend,jdbcType=CHAR}
+      f_recommend = #{fRecommend,jdbcType=CHAR},
+      category_id = #{categoryId,jdbcType=INTEGER}
     where f_id = #{fId,jdbcType=INTEGER}
   </update>
 
 
-  <!-- 显示所有菜品-->
-  <select id="allFoodList" resultMap="BaseResultMap" >
-    select * from tb_food
+    <resultMap id="categoryResultMap" type="com.avocado.entity.Food">
+        <id column="f_id" property="fId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="f_name" property="fName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="f_price" property="fPrice" javaType="java.lang.Double" jdbcType="DOUBLE"/>
+        <result column="f_discount" property="fDiscount" javaType="java.lang.Double" jdbcType="DOUBLE"/>
+        <result column="f_picture" property="fPicture" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="f_describe" property="fDescribe" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="f_quantity" property="fQuantity" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="f_recommend" property="fRecommend" javaType="java.lang.String" jdbcType="CHAR"/>
+        <result column="category_id" property="categoryId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <association property="category" javaType="com.avocado.entity.Category">
+            <id column="category_id" property="categoryId"/>
+            <result column="category_name" property="categoryName"/>
+        </association>
+    </resultMap>
+    <!-- 显示所有菜品-->
+    <select id="allFoodList" resultMap="categoryResultMap">
+    select f.*,c.*
+    from tb_food as f,tb_category as c
+    where f.category_id=c.category_id
   </select>
 
+    <!-- 显示类别的菜品-->
+    <select id="categoryFoodList" resultMap="categoryResultMap">
+    select f.*,c.*
+    from tb_food as f,tb_category as c
+    where f.category_id=#{categoryId} and f.category_id=c.category_id
+  </select>
 </mapper>

@@ -17,7 +17,11 @@ public class Food {
 
     private String fRecommend;
 
-    public Food(Integer fId, String fName, Double fPrice, Double fDiscount, String fPicture, String fDescribe, Integer fQuantity, String fRecommend) {
+    private Integer categoryId;
+
+    private Category category;
+
+    public Food(Integer fId, String fName, Double fPrice, Double fDiscount, String fPicture, String fDescribe, Integer fQuantity, String fRecommend, Integer categoryId) {
         this.fId = fId;
         this.fName = fName;
         this.fPrice = fPrice;
@@ -26,6 +30,7 @@ public class Food {
         this.fDescribe = fDescribe;
         this.fQuantity = fQuantity;
         this.fRecommend = fRecommend;
+        this.categoryId = categoryId;
     }
 
     public Food() {
@@ -94,5 +99,21 @@ public class Food {
 
     public void setfRecommend(String fRecommend) {
         this.fRecommend = fRecommend == null ? null : fRecommend.trim();
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

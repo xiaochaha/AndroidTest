@@ -4,7 +4,9 @@ import com.avocado.entity.Customer;
 import com.avocado.entity.Order;
 import com.avocado.entity.OrderExample;
 import com.avocado.entity.OrderKey;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderMapper {
@@ -30,4 +32,5 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
+    List<Order> allOrderList();
 }

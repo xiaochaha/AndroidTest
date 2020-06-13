@@ -23,4 +23,9 @@ public class FoodServiceImpl implements FoodService {
     public List<Food> allFoodList() {
         return foodMapper.allFoodList();
     }
+
+    @Override
+    public List<Food> categoryFoodList(int categoryId) { return foodMapper.categoryFoodList(categoryId);}
+
+
 }

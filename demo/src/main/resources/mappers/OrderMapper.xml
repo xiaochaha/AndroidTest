@@ -257,4 +257,36 @@
     where c_id = #{cId,jdbcType=INTEGER}
       and f_id = #{fId,jdbcType=INTEGER}
   </update>
+
+
+  <resultMap id="allResultMap" type="com.avocado.entity.Order">
+    <constructor>
+      <idArg column="c_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="f_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="o_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="o_quantity" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="o_total" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="o_remarks" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="o_regtime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="o_canceltime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+    <collection property="food" javaType="com.avocado.entity.Food">
+      <result column="f_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="f_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="f_price" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <result column="f_discount" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <result column="f_picture" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="customer" javaType="com.avocado.entity.Customer">
+      <result column="c_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <result column="c_username" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  <!-- 显示所有菜品-->
+  <select id="allOrderList" resultMap="allResultMap" >
+    select c.c_id,c.c_username,f.f_id,f.f_name,f.f_price,f.f_discount,f.f_picture,o.o_id,o.o_quantity,o.o_total,o.o_remarks,o.o_regtime,o.o_canceltime
+    from tb_food as f,tb_customer as c,tb_order as o
+    where c.c_id=o.c_id and f.f_id=o.c_id
+  </select>
+
 </mapper>

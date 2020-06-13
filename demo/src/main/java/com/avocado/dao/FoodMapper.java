@@ -29,4 +29,7 @@ public interface FoodMapper {
     int updateByPrimaryKey(Food record);
 
     List<Food> allFoodList();
+
+    List<Food> categoryFoodList(@Param("categoryId")int categoryId);
+
 }

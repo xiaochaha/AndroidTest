@@ -10,5 +10,8 @@ public interface CustomerService {
     public Customer login(String username, String password);
     //用户注册
     public int register(Customer customer);
+    //修改用户
+
+    //删除用户
 
 }
