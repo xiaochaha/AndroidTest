@@ -27,26 +27,26 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> userOrderList(int cId) {
-        return null;
+        return orderMapper.userOrderList(cId);
     }
 
     @Override
-    public Order addOrder(int cId, int fId) {
-        return null;
+    public int addOrder(Order order) {
+        return orderMapper.insert(order);
     }
 
     @Override
-    public Order updateOrder(int cId, int fId) {
-        return null;
+    public int updateOrder(Order order) {
+        return orderMapper.updateByPrimaryKeySelective(order);
     }
 
     @Override
-    public int deleteOrder(int cId, int fId) {
-        return 0;
+    public int deleteOrder(Order order) {
+        return orderMapper.deleteByPrimaryKey(order);
     }
 
     @Override
     public int deleteAllOrder(int cId) {
-        return 0;
+        return orderMapper.deleteAllOrder(cId);
     }
 }

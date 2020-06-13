@@ -33,4 +33,14 @@ public interface OrderMapper {
     int updateByPrimaryKey(Order record);
 
     List<Order> allOrderList();
+
+    List<Order> userOrderList(@Param("cId")int cId);
+
+    //int addOrder(@Param("cId")int cId, @Param("fId")int fId);
+
+    //int updateOrder(Order order);
+
+    //int deleteOrder(Order order);
+
+    int deleteAllOrder(@Param("cId")int cId);
 }

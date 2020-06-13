@@ -40,5 +40,23 @@ public class FoodController {
         return foodService.categoryFoodList(categoryId);
     }
 
+    @ApiOperation(value = "添加菜品",notes = "用户添加订单")
+    @RequestMapping(value = "/addFood",method = RequestMethod.POST)
+    public int addFood(@ApiParam Food food) {
+        return foodService.addFood(food);
+    }
+
+    @ApiOperation(value = "修改一个菜品",notes = "修改一个菜品")
+    @RequestMapping(value = "/updateFood",method = RequestMethod.POST)
+    public int updateFood(@ApiParam Food food) {
+        return foodService.updateFood(food);
+    }
+
+    @ApiOperation(value = "删除一个菜品",notes = "删除一个菜品")
+    @RequestMapping(value = "/deleteFood",method = RequestMethod.DELETE)
+    public int deleteFood(@RequestParam int fId) {
+        return foodService.deleteFood(fId);
+    }
+
 }
 

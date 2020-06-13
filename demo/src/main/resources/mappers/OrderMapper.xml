@@ -282,11 +282,21 @@
       <result column="c_username" javaType="java.lang.String" jdbcType="VARCHAR" />
     </collection>
   </resultMap>
-  <!-- 显示所有菜品-->
+  <!-- 显示所有订单-->
   <select id="allOrderList" resultMap="allResultMap" >
-    select c.c_id,c.c_username,f.f_id,f.f_name,f.f_price,f.f_discount,f.f_picture,o.o_id,o.o_quantity,o.o_total,o.o_remarks,o.o_regtime,o.o_canceltime
+    select c.c_username,f.f_name,f.f_price,f.f_discount,f.f_picture,o.*
     from tb_food as f,tb_customer as c,tb_order as o
     where c.c_id=o.c_id and f.f_id=o.c_id
   </select>
+  <!-- 显示客户订单-->
+  <select id="userOrderList" resultMap="allResultMap" >
+    select c.c_username,f.f_name,f.f_price,f.f_discount,f.f_picture,o.*
+    from tb_food as f,tb_customer as c,tb_order as o
+    where c.c_id=o.c_id and f.f_id=o.c_id and c.c_id=#{cId}
+  </select>
 
+  <delete id="deleteAllOrder">
+    delete from tb_order
+    where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
 </mapper>

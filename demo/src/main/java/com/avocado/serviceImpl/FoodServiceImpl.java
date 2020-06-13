@@ -27,5 +27,20 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public List<Food> categoryFoodList(int categoryId) { return foodMapper.categoryFoodList(categoryId);}
 
+    @Override
+    public int addFood(Food food) {
+        return foodMapper.insert(food);
+    }
+
+    @Override
+    public int updateFood(Food food) {
+        return foodMapper.updateByPrimaryKeySelective(food);
+    }
+
+    @Override
+    public int deleteFood(int fId) {
+        return foodMapper.deleteByPrimaryKey(fId);
+    }
+
 
 }
