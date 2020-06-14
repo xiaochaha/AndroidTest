@@ -6,6 +6,7 @@ import com.avocado.entity.Food;
 import com.avocado.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 /**
@@ -25,12 +26,20 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public List<Food> categoryFoodList(int categoryId) { return foodMapper.categoryFoodList(categoryId);}
+    public List<Food> categoryFoodList(int categoryId) { return foodMapper.categoryFoodList(categoryId); }
 
     @Override
-    public int addFood(Food food) {
-        return foodMapper.insert(food);
+    public List<Food> discountFoodList() {
+        return foodMapper.discountFoodList();
     }
+
+    @Override
+    public List<Food> recommendFoodList() {
+        return foodMapper.recommendFoodList();
+    }
+
+    @Override
+    public int addFood(Food food) { return foodMapper.insert(food); }
 
     @Override
     public int updateFood(Food food) {
@@ -40,6 +49,11 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public int deleteFood(int fId) {
         return foodMapper.deleteByPrimaryKey(fId);
+    }
+
+    @Override
+    public int updateFoodImg(int fId, String s) {
+        return foodMapper.updateFoodImg(fId,s);
     }
 
 

@@ -40,6 +40,18 @@ public class FoodController {
         return foodService.categoryFoodList(categoryId);
     }
 
+    @ApiOperation(value = "显示折扣菜品",notes = "显示所有菜品")
+    @RequestMapping(value = "/discountFoodList",method = RequestMethod.GET)
+    public  List<Food> discountFoodList() {
+        return foodService.discountFoodList();
+    }
+
+    @ApiOperation(value = "显示推荐菜品",notes = "显示所有菜品")
+    @RequestMapping(value = "/recommendFoodList",method = RequestMethod.GET)
+    public  List<Food> recommendFoodList() {
+        return foodService.recommendFoodList();
+    }
+
     @ApiOperation(value = "添加菜品",notes = "用户添加订单")
     @RequestMapping(value = "/addFood",method = RequestMethod.POST)
     public int addFood(@ApiParam Food food) {

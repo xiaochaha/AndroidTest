@@ -306,5 +306,27 @@
     select f.*,c.*
     from tb_food as f,tb_category as c
     where f.category_id=#{categoryId} and f.category_id=c.category_id
+    </select>
+
+    <!-- 显示折扣菜品-->
+    <select id="discountFoodList" resultMap="categoryResultMap">
+    select f.*,c.*
+    from tb_food as f,tb_category as c
+    where f.category_id=c.category_id and f.f_discount>0
   </select>
+
+    <!-- 显示推荐菜品-->
+    <select id="recommendFoodList" resultMap="categoryResultMap">
+    select f.*,c.*
+    from tb_food as f,tb_category as c
+    where f.category_id=c.category_id and f.f_recommend=5
+  </select>
+
+    <update id="updateFoodImg" parameterType="com.avocado.entity.Food">
+        update tb_food
+        set
+        f_picture=#{fPicture,jdbcType=VARCHAR}
+        where
+        f_id=#{fId,jdbcType=INTEGER}
+    </update>
 </mapper>

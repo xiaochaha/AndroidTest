@@ -32,4 +32,9 @@ public interface FoodMapper {
 
     List<Food> categoryFoodList(@Param("categoryId")int categoryId);
 
+    List<Food> discountFoodList();
+
+    List<Food> recommendFoodList();
+
+    int updateFoodImg(@Param("fId") int fId, @Param("fPicture") String s);
 }

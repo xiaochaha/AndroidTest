@@ -2,12 +2,15 @@ package com.avocado.work;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.avocado.entity.Customer;
@@ -25,7 +28,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     Customer customer =null;
     private EditText username,password;
     private Button loginBtn;
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //    }
 
+    //用户登录
     private void login(){
 
         String url = urlStr+"/login";
@@ -100,10 +104,17 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //                Log.d(TAG, "onResponse: " + response.body().string());
                 customer= JSON.parseObject(response.body().string(),Customer.class);//解析json数据
-                System.out.println(customer.toString());
-                Intent intent=new Intent(MainActivity.this,IndexActivity.class);
-                intent.putExtra("username",customer.getcUsername());
-                startActivityForResult(intent,Index);
+                if (customer==null){
+                    Looper.prepare();
+                    Toast.makeText(MainActivity.this,"用户名或者密码错误",Toast.LENGTH_SHORT).show();
+                    Looper.loop();
+                }else {
+                    Intent intent=new Intent(MainActivity.this,IndexActivity.class);
+                    intent.putExtra("username",customer.getcUsername());
+                    startActivityForResult(intent,Index);
+                }
+
+
 
             }
         });
