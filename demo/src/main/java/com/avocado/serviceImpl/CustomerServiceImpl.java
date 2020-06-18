@@ -26,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public int register(Customer customer) {
         try {
-            return customerMapper.insert(customer);
+            return customerMapper.register(customer);
         }catch (Exception e){
             System.out.println(e.toString());
             return 0;

@@ -29,27 +29,37 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class MainActivity extends Activity {
-    Customer customer =null;
-    private EditText username,password;
-    private Button loginBtn;
+    Customer customer = null;
+    private EditText username, password;
+    private Button loginBtn, regBtn;
     private static final String TAG = "springboot";
     private String urlStr = "http://10.0.2.2:8080/customer";
-    private static  final int Index=0;
+    private static final int Index = 0;
+    private static final int Register = 1;
     //private static  final int Moon=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        username=(EditText)findViewById(R.id.username);
-        password=(EditText)findViewById(R.id.password);
-        loginBtn=(Button)findViewById(R.id.loginBtn);
-
+        username = (EditText) findViewById(R.id.username);
+        password = (EditText) findViewById(R.id.password);
+        loginBtn = (Button) findViewById(R.id.loginBtn);
+        loginBtn = (Button) findViewById(R.id.loginBtn);
+        regBtn = (Button) findViewById(R.id.regBtn);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
 
+            }
+        });
+
+        regBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivityForResult(intent, Register);
             }
         });
     }
@@ -76,13 +86,13 @@ public class MainActivity extends Activity {
 //    }
 
     //用户登录
-    private void login(){
+    private void login() {
 
-        String url = urlStr+"/login";
+        String url = urlStr + "/login";
         OkHttpClient okHttpClient = new OkHttpClient();
         RequestBody requestBody = new FormBody.Builder()//post请求
-                .add("username",username.getText().toString())
-                .add("password",password.getText().toString())
+                .add("username", username.getText().toString())
+                .add("password", password.getText().toString())
                 .build();
         Request request = new Request.Builder()
                 .url(url)
@@ -103,23 +113,21 @@ public class MainActivity extends Activity {
 //                    Log.d(TAG, headers.name(i) + ":" + headers.value(i));
 //                }
 //                Log.d(TAG, "onResponse: " + response.body().string());
-                customer= JSON.parseObject(response.body().string(),Customer.class);//解析json数据
-                if (customer==null){
+                customer = JSON.parseObject(response.body().string(), Customer.class);//解析json数据
+                if (customer == null) {
                     Looper.prepare();
-                    Toast.makeText(MainActivity.this,"用户名或者密码错误",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "用户名或者密码错误", Toast.LENGTH_SHORT).show();
                     Looper.loop();
-                }else {
-                    Intent intent=new Intent(MainActivity.this,IndexActivity.class);
-                    intent.putExtra("username",customer.getcUsername());
-                    startActivityForResult(intent,Index);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, IndexActivity.class);
+                    intent.putExtra("cId", customer.getcId());
+                    startActivityForResult(intent, Index);
                 }
-
 
 
             }
         });
     }
-
 
 
 }

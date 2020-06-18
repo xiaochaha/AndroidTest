@@ -1,23 +1,35 @@
 package com.avocado.entity;
 
+
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 public class Customer {
+
+    @JSONField(name = "cId")
     private Integer cId;
 
+    @JSONField(name = "cUsername")
     private String cUsername;
 
+    @JSONField(name = "cPassword")
     private String cPassword;
 
+    @JSONField(name = "cPhone")
     private String cPhone;
 
+    @JSONField(name = "cTable")
     private String cTable;
 
+    @JSONField(name = "cRegtime")
     private Date cRegtime;
 
+    @JSONField(name = "cFrequency")
     private Integer cFrequency;
 
-    public Customer(Integer cId, String cUsername, String cPassword, String cPhone, String cTable, Date cRegtime, Integer cFrequency) {
+    public Customer(String cUsername, String cPassword, String cPhone, String cTable, Date cRegtime, Integer cFrequency) {
         this.cId = cId;
         this.cUsername = cUsername;
         this.cPassword = cPassword;

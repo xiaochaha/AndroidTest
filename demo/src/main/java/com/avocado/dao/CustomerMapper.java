@@ -29,4 +29,6 @@ public interface CustomerMapper {
     int updateByPrimaryKey(Customer record);
 
     Customer login(String username, String password);
+
+    int register(Customer customer);
 }

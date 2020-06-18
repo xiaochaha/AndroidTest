@@ -9,7 +9,8 @@
         android:id="@+id/txv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="12sp" />
+        android:textSize="16sp"
+        android:text="主页"/>
 
     <TextView
         android:id="@+id/txv2"
@@ -28,19 +29,22 @@
             android:id="@+id/imgRec1"
             android:layout_width="120sp"
             android:layout_height="180sp"
+            android:scaleType="centerCrop"
             />
 
         <ImageView
             android:id="@+id/imgRec2"
             android:layout_width="120sp"
             android:layout_height="180sp"
-            android:layout_marginLeft="10sp"/>
+            android:layout_marginLeft="10sp"
+            android:scaleType="centerCrop"/>
 
         <ImageView
             android:id="@+id/imgRec3"
             android:layout_width="120sp"
             android:layout_height="180sp"
-            android:layout_marginLeft="10sp"/>
+            android:layout_marginLeft="10sp"
+            android:scaleType="centerCrop"/>
 
 
     </LinearLayout>
@@ -64,19 +68,22 @@
         <ImageView
             android:id="@+id/imgDis1"
             android:layout_width="120sp"
-            android:layout_height="180sp" />
+            android:layout_height="180sp"
+            android:scaleType="centerCrop"/>
 
         <ImageView
             android:id="@+id/imgDis2"
             android:layout_width="120sp"
             android:layout_height="180sp"
-            android:layout_marginLeft="10sp"/>
+            android:layout_marginLeft="10sp"
+            android:scaleType="centerCrop"/>
 
         <ImageView
             android:id="@+id/imgDis3"
             android:layout_width="120sp"
             android:layout_height="180sp"
-            android:layout_marginLeft="10sp"/>
+            android:layout_marginLeft="10sp"
+            android:scaleType="centerCrop"/>
 
 
     </LinearLayout>
@@ -85,19 +92,21 @@
         android:id="@+id/bottom"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true">
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/indexToMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="菜单页"
+            android:scaleType="centerCrop"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/indexToOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="订单页"
+            android:scaleType="centerCrop"/>
     </LinearLayout>
 
 

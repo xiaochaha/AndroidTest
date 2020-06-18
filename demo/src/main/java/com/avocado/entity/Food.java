@@ -1,5 +1,7 @@
 package com.avocado.entity;
 
+import java.util.List;
+
 public class Food {
     private Integer fId;
 
@@ -21,7 +23,7 @@ public class Food {
 
     private Category category;
 
-    public Food(Integer fId, String fName, Double fPrice, Double fDiscount, String fPicture, String fDescribe, Integer fQuantity, String fRecommend, Integer categoryId) {
+    public Food(Integer fId, String fName, Double fPrice, Double fDiscount, String fPicture, String fDescribe, Integer fQuantity, String fRecommend, Integer categoryId, Category category) {
         this.fId = fId;
         this.fName = fName;
         this.fPrice = fPrice;
@@ -31,6 +33,7 @@ public class Food {
         this.fQuantity = fQuantity;
         this.fRecommend = fRecommend;
         this.categoryId = categoryId;
+
     }
 
     public Food() {

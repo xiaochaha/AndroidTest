@@ -23,17 +23,18 @@ public class CustomerController {
 
     @ApiOperation(value = "顾客登录",notes = "根据顾客的账号密码来登入")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户名", required = false, dataType = "String"),
-            @ApiImplicitParam(name = "password", value = "用户密码", required = false, dataType = "String")
+            @ApiImplicitParam(name = "username", value = "用户名", dataType = "String"),
+            @ApiImplicitParam(name = "password", value = "用户密码", dataType = "String")
     })
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public Customer login(@ApiParam String username, @ApiParam String password) {
         return customerService.login(username,password);
     }
 
+
     @ApiOperation(value = "顾客注册",notes = "顾客注册")
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public  int register(@ApiParam Customer customer) {
+    public  int register(@RequestBody Customer customer) {
         return customerService.register(customer);
     }
 

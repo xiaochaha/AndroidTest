@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="登录页面"
+        android:text="注册页面"
         />
-    <!--用户名-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,16 +17,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="账 号             "/>
+            android:width="250px"
+            android:text="账号"/>
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/usernameReg"
             android:background="@null"
             android:hint="请输入用户名"
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-    <!--密码-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,32 +35,49 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="密 码             "
-            />
+            android:width="250px"
+            android:text="密码"/>
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/passwordReg"
             android:background="@null"
             android:hint="请输入密码"
 
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
-    <!--登入按钮-->
-    <Button
-        android:id="@+id/loginBtn"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="登录" >
-    </Button>
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="250px"
+            android:text="再次输入密码"/>
+        <EditText
+            android:id="@+id/repasswordReg"
+            android:background="@null"
+            android:hint="再次输入密码"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/regBtn"
+        android:id="@+id/regSummitBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:text="注册" >
+        android:text="提交" >
     </Button>
+    <Button
+        android:id="@+id/regReturnBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="返回" >
+    </Button>
+
 
 </LinearLayout>

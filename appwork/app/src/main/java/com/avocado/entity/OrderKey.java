@@ -1,9 +1,11 @@
 package com.avocado.entity;
 
 public class OrderKey {
-    private Integer cId;
 
+    private Integer cId;
     private Integer fId;
+    private Customer customer;
+    private Food food;
 
     public OrderKey(Integer cId, Integer fId) {
         this.cId = cId;
@@ -28,5 +30,21 @@ public class OrderKey {
 
     public void setfId(Integer fId) {
         this.fId = fId;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Food getFood() {
+        return food;
+    }
+
+    public void setFood(Food food) {
+        this.food = food;
     }
 }

@@ -259,5 +259,11 @@
     select * from tb_customer where c_username=#{param1} and c_password=#{param2}
   </select>
 
+  <insert id="register" useGeneratedKeys="true" keyProperty="cId">insert into tb_customer (c_username, c_password,
+      c_phone, c_table, c_regtime,
+      c_frequency)
+    values (#{cUsername,jdbcType=VARCHAR}, #{cPassword,jdbcType=VARCHAR},
+      #{cPhone,jdbcType=VARCHAR}, #{cTable,jdbcType=VARCHAR}, #{cRegtime,jdbcType=TIMESTAMP},
+      #{cFrequency,jdbcType=INTEGER})</insert>
 
 </mapper>

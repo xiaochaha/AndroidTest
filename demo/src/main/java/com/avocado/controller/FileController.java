@@ -35,7 +35,7 @@ public class FileController {
         }
         String fileName = file.getOriginalFilename();  // 文件名
         String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
-        String filePath = System.getProperty("user.dir")+"\\src\\resources\\static\\images\\"; // 上传后的路径
+        String filePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images\\"; // 上传后的路径
         System.out.println(filePath);
         fileName = UUID.randomUUID() + suffixName; // 新文件名
         File dest = new File(filePath + fileName);
@@ -47,9 +47,9 @@ public class FileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String filename = fileName;
+        String filename = "images/"+fileName;
         System.out.println(filename);
-        if (foodService.updateFoodImg(fId,filePath+fileName)!=0){
+        if (foodService.updateFoodImg(fId,filename)!=0){
             model.addAttribute("filename", filename);
             return filename;
         }else{

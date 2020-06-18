@@ -1,5 +1,7 @@
 package com.avocado.entity;
 
+import java.util.List;
+
 public class Food {
     private Integer fId;
 
@@ -17,7 +19,11 @@ public class Food {
 
     private String fRecommend;
 
-    public Food(Integer fId, String fName, Double fPrice, Double fDiscount, String fPicture, String fDescribe, Integer fQuantity, String fRecommend) {
+    private Integer categoryId;
+
+    private Category category;
+
+    public Food(String fName, Double fPrice, Double fDiscount, String fPicture, String fDescribe, Integer fQuantity, String fRecommend, Integer categoryId, Category category) {
         this.fId = fId;
         this.fName = fName;
         this.fPrice = fPrice;
@@ -26,6 +32,8 @@ public class Food {
         this.fDescribe = fDescribe;
         this.fQuantity = fQuantity;
         this.fRecommend = fRecommend;
+        this.categoryId = categoryId;
+        this.category = category;
     }
 
     public Food() {
@@ -94,5 +102,33 @@ public class Food {
 
     public void setfRecommend(String fRecommend) {
         this.fRecommend = fRecommend == null ? null : fRecommend.trim();
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Food(Category category) {
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "fId=" + fId +
+                ", fName='" + fName + '\'' +
+                ", fPrice=" + fPrice +
+                ", fDiscount=" + fDiscount +
+                ", fPicture='" + fPicture + '\'' +
+                ", fDescribe='" + fDescribe + '\'' +
+                ", fQuantity=" + fQuantity +
+                ", fRecommend='" + fRecommend + '\'' +
+                ", categoryId=" + categoryId +
+                ", category=" + category +
+                '}';
     }
 }
