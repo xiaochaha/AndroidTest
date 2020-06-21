@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/menuCId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="菜单页面"
+        />
+
+    <LinearLayout
+        android:id="@+id/menuLeft"
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/menuBtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="主菜" />
+
+            <Button
+                android:id="@+id/menuBtn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="副菜" />
+
+            <Button
+                android:id="@+id/menuBtn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="饮料" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menuRight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="#D3D3D3"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="660dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/menuToIndex"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="主页"
+            android:scaleType="centerCrop"/>
+        <Button
+            android:id="@+id/menuToOrder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="订单页"
+            android:scaleType="centerCrop"/>
+    </LinearLayout>
+
+</LinearLayout>

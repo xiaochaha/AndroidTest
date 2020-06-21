@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="pic_view_0" type="id"/>
+    <item name="pic_view_1" type="id"/>
+    <item name="pic_view_2" type="id"/>
+    <item name="pic_view_3" type="id"/>
+    <item name="pic_view_4" type="id"/>
+    <item name="pic_view_5" type="id"/>
+</resources>

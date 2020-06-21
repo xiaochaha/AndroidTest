@@ -33,6 +33,12 @@ public class OrderController {
         return orderService.allOrderList();
     }
 
+    @ApiOperation(value = "根据用户显示订单",notes = "根据用户显示订单")
+    @RequestMapping(value = "/userOrderList",method = RequestMethod.GET)
+    public List<Order> userOrderList(@RequestParam int cId) {
+        return orderService.userOrderList(cId);
+    }
+
     @ApiOperation(value = "用户添加订单",notes = "用户添加订单")
     @RequestMapping(value = "/addOrder",method = RequestMethod.POST)
     public int addOrder(@ApiParam Order order) {

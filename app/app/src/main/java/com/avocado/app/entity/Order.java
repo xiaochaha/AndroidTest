@@ -1,4 +1,4 @@
-package com.avocado.entity;
+package com.avocado.app.entity;
 
 import java.util.Date;
 
@@ -14,10 +14,6 @@ public class Order extends OrderKey {
     private Date oRegtime;
 
     private Date oCanceltime;
-
-    private Customer customer;
-
-    private Food food;
 
     public Order(Integer cId, Integer fId, String oId, Integer oQuantity, Double oTotal, String oRemarks, Date oRegtime, Date oCanceltime) {
         super(cId, fId);
@@ -79,25 +75,5 @@ public class Order extends OrderKey {
 
     public void setoCanceltime(Date oCanceltime) {
         this.oCanceltime = oCanceltime;
-    }
-
-    @Override
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    @Override
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    @Override
-    public Food getFood() {
-        return food;
-    }
-
-    @Override
-    public void setFood(Food food) {
-        this.food = food;
     }
 }
